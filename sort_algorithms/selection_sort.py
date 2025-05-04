@@ -10,11 +10,27 @@ def selection_sort(array) -> list:
         sorted_array.append(array.pop(smallest_index)) #At the end of the loop the smallest_number is removed from the main array and added to the result array.
     return sorted_array
 
+def selection_sort_v2(arr) -> list: #book version
+    def search_smallest(arr):
+        smallest = arr[0]
+        smallest_index = 0
+        for i in range(1, len(arr)):
+            if arr[i] < smallest:
+                smallest = arr[i]
+                smallest_index = i
+        return smallest_index
+    
+    sorted_array = []
+    for i in range(len(arr)):
+        smallest = search_smallest(arr)
+        sorted_array.append(arr.pop(smallest))
+    return sorted_array
+
 if __name__ == '__main__':
     unsorted_array = [100,3,91,7,92,8,89,10,82,20,77,55,64,59,6]
     sorted_array   = [3,6,7,8,10,20,55,59,64,77,82,89,92,91,100]
     inverted_array = [100,91,92,89,82,77,64,59,55,20,10,8,7,6,3]
     
-    print(f"Unsorted: {selection_sort(unsorted_array)}")
-    print(f"Inverted: {selection_sort(inverted_array)}")
-    print(f"Sorted:   {selection_sort(sorted_array)}")
+    print(f"Unsorted: {selection_sort_v2(unsorted_array)}")
+    print(f"Inverted: {selection_sort_v2(inverted_array)}")
+    print(f"Sorted:   {selection_sort_v2(sorted_array)}")
